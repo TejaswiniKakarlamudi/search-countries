@@ -40,7 +40,7 @@ function Display() {
         );
         setSearchedData(filteredData);
         setOnSearch(true);
-      }, 300);
+      }, 500);
 
     function handleOnchange(event) {
         setOnSearch(true);
