@@ -14,6 +14,7 @@ function Display() {
         try {
             const response = await fetch(url);
             const result = await response.json();
+            console.log(result.length);
             return result;   
         } catch (error) {
             console.log(error);
@@ -26,9 +27,11 @@ function Display() {
       async function fetchData(){
         const required = await getData(api);
         setData(required);
+        
       };
 
       fetchData();
+     
     },[]);
 
     const debouncedSearch = _.debounce((query) => {
@@ -59,18 +62,16 @@ function Display() {
       </div>
     </div>
     {!onSearch ? (
-    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
-        {/* {data.map((country) => (
+    <div className="row" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
+        {data.map((country) => (
         <div className="col-md-4 mb-4" key={country.cca3} style={{ marginBottom: '2px' }}>
             <Card data={country} />
         </div>
-        ))} */}
-        {data.map((country) => (
-            <Card key={country.cca3} data={country} />
         ))}
+        
     </div>
     ) : (
-    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
+    <div className="row" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
         {searchData.map((country) => (
         <div className="col-md-4 mb-4" key={country.cca3}>
             <Card data={country} />
