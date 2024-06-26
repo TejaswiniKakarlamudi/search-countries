@@ -45,7 +45,12 @@ function Display() {
     function handleOnchange(event) {
         setOnSearch(true);
         const query = event.target.value.toLowerCase();
-        debouncedSearch(query); 
+        const filteredData = data.filter((country) =>
+            country.name.common.toLowerCase().includes(query.toLowerCase())
+          );
+          setSearchedData(filteredData);
+          setOnSearch(true);
+        // debouncedSearch(query); 
     };
     
   return (
