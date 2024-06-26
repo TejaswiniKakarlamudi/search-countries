@@ -58,20 +58,23 @@ function Display() {
         />
       </div>
     </div>
-    <div className="row countryCard" style={{display:'flex', flexWrap:'wrap', margin: '2vh 2vw',justifyContent:'space-around' }}>
-      {!onSearch
-        ? data.map((country) => (
-            <div className="col-md-4 mb-4 " key={country.cca3} style={{marginBottom:'2px'}} >
-              <Card data={country} />
-            </div>
-          ))
-        : searchData.map((country) => (
-            <div className="col-md-4 mb-4" key={country.cca3}>
-              <Card data={country} />
-            </div>
-          ))
-      }
+    {!onSearch ? (
+    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
+        {data.map((country) => (
+        <div className="col-md-4 mb-4" key={country.cca3} style={{ marginBottom: '2px' }}>
+            <Card data={country} />
+        </div>
+        ))}
     </div>
+    ) : (
+    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
+        {searchData.map((country) => (
+        <div className="col-md-4 mb-4" key={country.cca3}>
+            <Card data={country} />
+        </div>
+        ))}
+    </div>
+    )} 
   </div>
   )
 }
