@@ -60,10 +60,13 @@ function Display() {
     </div>
     {!onSearch ? (
     <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
-        {data.map((country) => (
+        {/* {data.map((country) => (
         <div className="col-md-4 mb-4" key={country.cca3} style={{ marginBottom: '2px' }}>
             <Card data={country} />
         </div>
+        ))} */}
+        {data.map((country) => (
+            <Card key={country.cca3} data={country} />
         ))}
     </div>
     ) : (
