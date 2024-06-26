@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Cards/Card';
-
+import _ from 'lodash'; 
 
 // https://restcountries.com/v3.1/all
 function Display() {
@@ -30,15 +30,19 @@ function Display() {
 
       fetchData();
     },[]);
-    
+
+    const debouncedSearch = _.debounce((query) => {
+        const filteredData = data.filter((country) =>
+          country.name.common.toLowerCase().includes(query.toLowerCase())
+        );
+        setSearchedData(filteredData);
+        setOnSearch(true);
+      }, 300);
+
     function handleOnchange(event) {
         setOnSearch(true);
         const query = event.target.value.toLowerCase();
-        console.log(query);
-        const filteredData = data.filter((country)=>{
-           return country.name.official.toLowerCase().includes(query);
-        })
-      setSearchedData(filteredData);  
+        debouncedSearch(query); 
     };
     
   return (
@@ -46,7 +50,7 @@ function Display() {
     <div className="row mb-4">
       <div className="col">
         <input
-          type="search"
+          type="text"
           className="form-control"
           placeholder="Search for countries"
           onChange={handleOnchange}
@@ -54,7 +58,7 @@ function Display() {
         />
       </div>
     </div>
-    <div className="row" style={{display:'flex', flexWrap:'wrap', margin: '2vh 2vw' }}>
+    <div className="row" style={{display:'flex', flexWrap:'wrap', margin: '2vh 2vw',justifyContent:'space-around' }}>
       {!onSearch
         ? data.map((country) => (
             <div className="col-md-4 mb-4" key={country.cca3} style={{marginBottom:'2px'}} >
