@@ -36,21 +36,21 @@ function Display() {
 
     const debouncedSearch = _.debounce((query) => {
         const filteredData = data.filter((country) =>
-          country.name.common.toLowerCase().includes(query.toLowerCase())
+          country.name.common.toLowerCase().includes(query)
         );
         setSearchedData(filteredData);
         setOnSearch(true);
       }, 500);
 
-    function handleOnchange(event) {
+    async function handleOnchange(event) {
         setOnSearch(true);
         const query = event.target.value.toLowerCase();
-        const filteredData = data.filter((country) =>
-            country.name.common.toLowerCase().includes(query.toLowerCase())
-          );
-          setSearchedData(filteredData);
-          setOnSearch(true);
-        // debouncedSearch(query); 
+        // const filteredData = data.filter((country) =>
+        //     country.name.common.toLowerCase().includes(query.toLowerCase())
+        //   );
+        //   setSearchedData(filteredData);
+        //   setOnSearch(true);
+        await debouncedSearch(query); 
     };
     
   return (
