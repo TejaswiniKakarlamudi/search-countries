@@ -67,13 +67,13 @@ function Display() {
           className="form-control"
           placeholder="Search for countries"
           onChange={handleOnchange}
-          style={{width:'50%', height:'30px', margin:'1vh'}}
+          style={{width:'50%', height:'30px', margin:'1vh', borderRadius:'25px', padding:'10px', border:'1px solid rgba(0,0,0,0.4)'}}
           value={search}
         />
       </div>
     </div>
     {!onSearch ? (
-    <div className="row" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
+    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
         {data.map((country) => (
         <div className="col-md-4 mb-4" key={country.cca3} style={{ marginBottom: '2px' }}>
             <Card data={country} title={search}/>
@@ -82,9 +82,9 @@ function Display() {
         
     </div>
     ) : (
-    <div className="row" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
+    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
         {searchData.map((country) => (
-        <div className="col-md-4 mb-4" key={country.cca3}>
+        <div className="col-md-4 mb-4 " key={country.cca3}>
             <Card data={country} title={search} />
         </div>
         ))}
