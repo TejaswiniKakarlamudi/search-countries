@@ -41,18 +41,21 @@ function Display() {
         );
         setSearchedData(filteredData);
         setOnSearch(true);
-      }, 500);
+      }, 300);
 
-    async function handleOnchange(event) {
+     function handleOnchange(event) {
         setOnSearch(true);
         const query = event.target.value.toLowerCase();
-        setSearch(query);
+        setSearch( event.target.value);
         // const filteredData = data.filter((country) =>
         //     country.name.common.toLowerCase().includes(query.toLowerCase())
         //   );
         //   setSearchedData(filteredData);
         //   setOnSearch(true);
-        await debouncedSearch(query); 
+        
+        debouncedSearch(query);
+        setTimeout(() => {}, 300); 
+        console.log(event.target.value);
     };
     
   return (
@@ -65,6 +68,7 @@ function Display() {
           placeholder="Search for countries"
           onChange={handleOnchange}
           style={{width:'50%', height:'30px', margin:'1vh'}}
+          value={search}
         />
       </div>
     </div>
