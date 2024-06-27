@@ -47,12 +47,6 @@ function Display() {
         setOnSearch(true);
         const query = event.target.value.toLowerCase();
         setSearch( event.target.value);
-        // const filteredData = data.filter((country) =>
-        //     country.name.common.toLowerCase().includes(query.toLowerCase())
-        //   );
-        //   setSearchedData(filteredData);
-        //   setOnSearch(true);
-        
         debouncedSearch(query);
         setTimeout(() => {}, 300); 
         console.log(event.target.value);
@@ -72,24 +66,18 @@ function Display() {
         />
       </div>
     </div>
-    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
+    <div className="row " style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
       {!onSearch ? (
-        
             data.map((country) => (
-            <div  key={country.cca3} style={{ marginBottom: '2px' }}>
-                <Card data={country} title={search}/>
-            </div>
+                <Card data={country}  key={country.cca3} />
             ))
         ) : (
-      
             searchData.map((country) => (
-            <div  key={country.cca3}>
-                <Card data={country} title={search} />
-            </div>
+                <Card data={country}  key={country.cca3}  />
             ))
         )
         } 
-      </div>
+    </div>
   </div>
   )
 }
