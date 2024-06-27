@@ -72,26 +72,28 @@ function Display() {
         />
       </div>
     </div>
-    {!onSearch ? (
     <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
-        {data.map((country) => (
-        <div className="col-md-4 mb-4" key={country.cca3} style={{ marginBottom: '2px' }}>
-            <Card data={country} title={search}/>
-        </div>
-        ))}
+      {!onSearch ? (
         
-    </div>
-    ) : (
-    <div className="row countryCard" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
-        {searchData.map((country) => (
-        <div className="col-md-4 mb-4 " key={country.cca3}>
-            <Card data={country} title={search} />
-        </div>
-        ))}
-    </div>
-    )} 
+            data.map((country) => (
+            <div  key={country.cca3} style={{ marginBottom: '2px' }}>
+                <Card data={country} title={search}/>
+            </div>
+            ))
+        ) : (
+      
+            searchData.map((country) => (
+            <div  key={country.cca3}>
+                <Card data={country} title={search} />
+            </div>
+            ))
+        )
+        } 
+      </div>
   </div>
   )
 }
 
-export default Display
+export default Display;
+
+
