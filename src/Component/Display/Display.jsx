@@ -7,6 +7,7 @@ function Display() {
     const [data,setData] = useState([]);
     const [onSearch, setOnSearch] = useState(false);
     const [searchData,setSearchedData] = useState([]);
+    const [search,setSearch] = useState('');
     const api = 'https://restcountries.com/v3.1/all';
 
     const getData = async (url) =>{
@@ -45,6 +46,7 @@ function Display() {
     async function handleOnchange(event) {
         setOnSearch(true);
         const query = event.target.value.toLowerCase();
+        setSearch(query);
         // const filteredData = data.filter((country) =>
         //     country.name.common.toLowerCase().includes(query.toLowerCase())
         //   );
@@ -62,7 +64,7 @@ function Display() {
           className="form-control"
           placeholder="Search for countries"
           onChange={handleOnchange}
-            style={{width:'50%', height:'30px', margin:'1vh'}}
+          style={{width:'50%', height:'30px', margin:'1vh'}}
         />
       </div>
     </div>
@@ -70,7 +72,7 @@ function Display() {
     <div className="row" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
         {data.map((country) => (
         <div className="col-md-4 mb-4" key={country.cca3} style={{ marginBottom: '2px' }}>
-            <Card data={country} />
+            <Card data={country} title={search}/>
         </div>
         ))}
         
@@ -79,7 +81,7 @@ function Display() {
     <div className="row" style={{ display: 'flex', flexWrap: 'wrap', margin: '2vh 2vw', justifyContent: 'space-around' }}>
         {searchData.map((country) => (
         <div className="col-md-4 mb-4" key={country.cca3}>
-            <Card data={country} />
+            <Card data={country} title={search} />
         </div>
         ))}
     </div>
